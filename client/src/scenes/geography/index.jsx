@@ -61,7 +61,7 @@ const Geography = () => {
             unknownColor="#666666"
             label="properties.name"
             valueFormat=".2s"
-            projectionScale={150}
+            projectionScale={100}
             projectionTranslation={[0.45, 0.6]}
             projectionRotation={[0, 0, 0]}
             borderWidth={1.3}
