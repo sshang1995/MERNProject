@@ -3,11 +3,11 @@ import { ResponsiveLine } from "@nivo/line";
 import { useTheme } from "@mui/material";
 import { useGetSalesQuery } from "state/api";
 
-const OverviewChart = ({ isDashboard = false, view }) => {
+const OverviewChart = ({ isDashboard, view }) => {
+  console.log("isDashboar", isDashboard);
   const theme = useTheme();
   const { data, isLoading } = useGetSalesQuery();
 
-  console.log(view);
   const [totalSalesLine, totalUnitsLine] = useMemo(() => {
     if (!data) return [];
 
@@ -44,15 +44,15 @@ const OverviewChart = ({ isDashboard = false, view }) => {
       { sales: 0, units: 0 }
     );
     return [[totalSalesLine], [totalUnitsLine]];
-  }, [data]);
+  }, [data]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  console.log("salesLine", totalSalesLine);
-  console.log("unitesLine", totalUnitsLine);
+  // console.log("salesLine", totalSalesLine);
+  // console.log("unitesLine", totalUnitsLine);
   if (!data || isLoading) return "Loading...";
 
   return (
     <ResponsiveLine
-      data={view == "sales" ? totalSalesLine : totalUnitsLine}
+      data={view === "sales" ? totalSalesLine : totalUnitsLine}
       theme={{
         axis: {
           domain: {
