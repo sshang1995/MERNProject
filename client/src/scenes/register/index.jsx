@@ -5,7 +5,16 @@ import { toast } from "react-toastify";
 import { FaUser } from "react-icons/fa";
 import { register, reset } from "../../state/auth/authSlice";
 import Spinner from "../../components/Spinner";
-import { Grid } from "@mui/material";
+import {
+  Grid,
+  Button,
+  FormControl,
+  Input,
+  InputAdornment,
+} from "@mui/material";
+import { AccountCircle } from "@mui/icons-material";
+import KeyIcon from "@mui/icons-material/Key";
+import EmailRoundedIcon from "@mui/icons-material/EmailRounded";
 
 function Register() {
   const [formData, setFormData] = useState({
@@ -23,6 +32,14 @@ function Register() {
   const { user, isLoading, isError, isSuccess, message } = useSelector(
     (state) => state.auth
   );
+
+  const checkPassword = () => {
+    const hasCapitalLetter = /[A-Z]/.test(password);
+    const hasLowerCaseLetter = /[a-z]/.test(password);
+    const hasNumber = /\d/.test(password);
+
+    return hasCapitalLetter && hasLowerCaseLetter && hasNumber;
+  };
 
   useEffect(() => {
     if (isError) {
@@ -55,6 +72,10 @@ function Register() {
       toast.error("The password needs to have at least 6 characters");
     } else if (password !== password2) {
       toast.error("Passwords do not match");
+    } else if (!checkPassword()) {
+      toast.error(
+        "Password must has one capital letter, one lower case letter and one number"
+      );
     } else {
       const userData = {
         name,
@@ -80,63 +101,100 @@ function Register() {
         justifyContent="center"
         sx={{ minHeight: "100vh" }}
       >
-        <section className="heading">
-          <h1>
+        <section className="heading" style={{ fontSize: "25px" }}>
+          <h1 style={{ fontSize: "35px" }}>
             <FaUser /> Register
           </h1>
           <p>Please create an account</p>
         </section>
 
-        <section className="form">
+        <section className="form" style={{ fontSize: "25px" }}>
           <form onSubmit={onSubmit}>
             <div className="form-group">
-              <input
-                type="text"
-                className="form-control"
-                id="name"
-                name="name"
-                value={name}
-                placeholder="Enter your name"
-                onChange={onChange}
-              />
+              <FormControl variant="standard">
+                <Input
+                  type="text"
+                  className="form-control"
+                  id="name"
+                  name="name"
+                  value={name}
+                  placeholder="Enter your name"
+                  style={{ fontSize: "25px" }}
+                  onChange={onChange}
+                  startAdornment={
+                    <InputAdornment position="start">
+                      <AccountCircle />
+                    </InputAdornment>
+                  }
+                />
+              </FormControl>
             </div>
             <div className="form-group">
-              <input
-                type="email"
-                className="form-control"
-                id="email"
-                name="email"
-                value={email}
-                placeholder="Enter your email"
-                onChange={onChange}
-              />
+              <FormControl variant="standard">
+                <Input
+                  type="email"
+                  className="form-control"
+                  id="email"
+                  name="email"
+                  value={email}
+                  placeholder="Enter your email"
+                  style={{ fontSize: "25px" }}
+                  onChange={onChange}
+                  startAdornment={
+                    <InputAdornment position="start">
+                      <EmailRoundedIcon />
+                    </InputAdornment>
+                  }
+                />
+              </FormControl>
             </div>
             <div className="form-group">
-              <input
-                type="password"
-                className="form-control"
-                id="password"
-                name="password"
-                value={password}
-                placeholder="Enter password"
-                onChange={onChange}
-              />
+              <FormControl variant="standard">
+                <Input
+                  type="password"
+                  className="form-control"
+                  id="password"
+                  name="password"
+                  value={password}
+                  placeholder="Enter password"
+                  style={{ fontSize: "25px" }}
+                  onChange={onChange}
+                  startAdornment={
+                    <InputAdornment position="start">
+                      <KeyIcon />
+                    </InputAdornment>
+                  }
+                />
+              </FormControl>
             </div>
             <div className="form-group">
-              <input
-                type="password"
-                className="form-control"
-                id="password2"
-                name="password2"
-                value={password2}
-                placeholder="Confirm password"
-                onChange={onChange}
-              />
+              <FormControl variant="standard">
+                <Input
+                  type="password"
+                  className="form-control"
+                  id="password2"
+                  name="password2"
+                  value={password2}
+                  placeholder="Confirm password"
+                  style={{ fontSize: "25px" }}
+                  onChange={onChange}
+                  startAdornment={
+                    <InputAdornment position="start">
+                      <KeyIcon />
+                    </InputAdornment>
+                  }
+                />
+              </FormControl>
             </div>
+            <br />
             <div className="form-group">
-              <button type="submit" className="btn btn-block">
+              <Button
+                type="submit"
+                variant="contained"
+                style={{ fontSize: "20px" }}
+              >
                 Submit
-              </button>
+              </Button>
             </div>
           </form>
         </section>

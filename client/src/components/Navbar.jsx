@@ -32,12 +32,15 @@ const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
   const theme = useTheme();
   const [anchorEl, setAnchorEl] = useState(null);
   const isOpen = Boolean(anchorEl);
-  const handleClick = (event) => setAnchorEl(event.currentTarget);
-  const handleClose = () => {
-    setAnchorEl(null);
-    console.log("logout");
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
     dispatch(logout());
     dispatch(reset());
+  };
+  const handleClose = (event) => {
+    console.log("logout");
+    // dispatch(logout());
+    // dispatch(reset());
     navigate("/login");
   }; //setAnchorEl(null);
 

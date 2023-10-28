@@ -4,7 +4,7 @@ import { useTheme } from "@mui/material";
 import { useGetSalesQuery } from "state/api";
 
 const OverviewChart = ({ isDashboard, view }) => {
-  console.log("isDashboar", isDashboard);
+  //console.log("isDashboar", isDashboard);
   const theme = useTheme();
   const { data, isLoading } = useGetSalesQuery();
 

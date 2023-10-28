@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import { FaUnlockAlt } from "react-icons/fa";
 import { logout, forgotPassword, reset } from "../../state/auth/authSlice";
 import Spinner from "../../components/Spinner";
+import { Grid, Button, FormControl, Input } from "@mui/material";
 
 function ForgotPassword() {
   const { user, isLoading, isError, isSuccess, message } = useSelector(
@@ -57,33 +58,52 @@ function ForgotPassword() {
 
   return (
     <>
-      <section className="heading">
-        <h1>
-          <FaUnlockAlt /> Forgot Password
-        </h1>
-        <p>Please enter your email address</p>
-      </section>
+      <Grid
+        container
+        spacing={0}
+        direction="column"
+        alignItems="center"
+        justifyContent="center"
+        sx={{ minHeight: "100vh" }}
+      >
+        <Grid item xs={3}>
+          <section className="heading" style={{ fontSize: "25px" }}>
+            <h1 style={{ fontSize: "35px" }}>
+              <FaUnlockAlt /> Forgot Password
+            </h1>
+            <p>Please enter your email address</p>
+          </section>
 
-      <section className="form">
-        <form onSubmit={onSubmit}>
-          <div className="form-group">
-            <input
-              type="email"
-              className="form-control"
-              id="email"
-              name="email"
-              value={email}
-              placeholder="Enter your email"
-              onChange={onChange}
-            />
-          </div>
-          <div className="form-group">
-            <button type="submit" className="btn btn-block">
-              Submit
-            </button>
-          </div>
-        </form>
-      </section>
+          <section className="form" style={{ fontSize: "25px" }}>
+            <form onSubmit={onSubmit}>
+              <div className="form-group">
+                <FormControl variant="standard">
+                  <Input
+                    type="email"
+                    className="form-control"
+                    id="email"
+                    name="email"
+                    value={email}
+                    placeholder="Enter your email"
+                    onChange={onChange}
+                    style={{ fontSize: "25px" }}
+                  />
+                </FormControl>
+              </div>
+              <br />
+              <div className="form-group">
+                <Button
+                  type="submit"
+                  variant="contained"
+                  style={{ fontSize: "20px" }}
+                >
+                  Submit
+                </Button>
+              </div>
+            </form>
+          </section>
+        </Grid>
+      </Grid>
     </>
   );
 }
