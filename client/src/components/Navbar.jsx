@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { logout, reset } from "../state/auth/authSlice";
 import {
   LightModeOutlined,
   DarkModeOutlined,
@@ -25,12 +27,22 @@ import {
 } from "@mui/material";
 
 const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const theme = useTheme();
   const [anchorEl, setAnchorEl] = useState(null);
   const isOpen = Boolean(anchorEl);
-  const handleClick = (event) => setAnchorEl(event.currentTarget);
-  const handleClose = () => setAnchorEl(null);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+    dispatch(logout());
+    dispatch(reset());
+  };
+  const handleClose = (event) => {
+    console.log("logout");
+    // dispatch(logout());
+    // dispatch(reset());
+    navigate("/login");
+  }; //setAnchorEl(null);
 
   return (
     <AppBar
@@ -117,10 +129,10 @@ const Navbar = ({ user, isSidebarOpen, setIsSidebarOpen }) => {
             <Menu
               anchorEl={anchorEl}
               open={isOpen}
-              onClose={handleClose}
+              //onClose={handleClose}
               anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
             >
-              <MenuItem onclick={handleClose}>Log Out</MenuItem>
+              <MenuItem onClick={handleClose}>Log Out</MenuItem>
             </Menu>
           </FlexBetween>
         </FlexBetween>

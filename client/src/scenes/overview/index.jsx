@@ -2,32 +2,41 @@ import React, { useState } from "react";
 import { FormControl, MenuItem, InputLabel, Box, Select } from "@mui/material";
 import Header from "components/Header";
 import OverviewChart from "components/OverviewChart";
+import Layout from "scenes/layout";
 
 const Overview = () => {
   const [view, setView] = useState("units");
+  const user = JSON.parse(localStorage.getItem("user"));
 
   return (
-    <Box m="1.5rem 2.5rem">
-      <Header
-        title="OVERVIEW"
-        subtitle="Overview of general revenue and profit"
-      />
+    <div>
+      {user != null ? (
+        <div>
+          <Layout />
+          <Box m="1.5rem 2.5rem">
+            <Header
+              title="OVERVIEW"
+              subtitle="Overview of general revenue and profit"
+            />
 
-      <Box height="75vh">
-        <FormControl sx={{ mt: "1rem" }}>
-          <InputLabel>View</InputLabel>
-          <Select
-            value={view}
-            label="View"
-            onChange={(e) => setView(e.target.value)}
-          >
-            <MenuItem value="sales">Sales</MenuItem>
-            <MenuItem value="units">Units</MenuItem>
-          </Select>
-        </FormControl>
-        <OverviewChart isDashboard={false} view={view} />
-      </Box>
-    </Box>
+            <Box height="75vh">
+              <FormControl sx={{ mt: "1rem" }}>
+                <InputLabel>View</InputLabel>
+                <Select
+                  value={view}
+                  label="View"
+                  onChange={(e) => setView(e.target.value)}
+                >
+                  <MenuItem value="sales">Sales</MenuItem>
+                  <MenuItem value="units">Units</MenuItem>
+                </Select>
+              </FormControl>
+              <OverviewChart isDashboard={false} view={view} />
+            </Box>
+          </Box>
+        </div>
+      ) : null}
+    </div>
   );
 };
 
