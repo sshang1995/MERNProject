@@ -24,10 +24,7 @@ import ResetPassword from "scenes/reset-password";
 
 function App() {
   const mode = useSelector((state) => state.global.mode);
-  const theme = useMemo(
-    () => createTheme(themeSettings(mode)),
-    [mode, theme.palette.secondary]
-  );
+  const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
   return (
     <div className="app">
       <BrowserRouter>
