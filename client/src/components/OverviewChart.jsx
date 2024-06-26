@@ -44,7 +44,7 @@ const OverviewChart = ({ isDashboard, view }) => {
       { sales: 0, units: 0 }
     );
     return [[totalSalesLine], [totalUnitsLine]];
-  }, [data, theme.palette.secondary]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [data]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // console.log("salesLine", totalSalesLine);
   // console.log("unitesLine", totalUnitsLine);

@@ -10,7 +10,7 @@ const Breakdown = () => {
     <div>
       {user != null ? (
         <div>
-          <Layout />
+          {/* <Layout /> */}
           <Box m="1.5rem 2.5rem">
             <Header title="BREAKDOWN" subtitle="Sales by category" />
             <Box mt="40px" height="75vh">

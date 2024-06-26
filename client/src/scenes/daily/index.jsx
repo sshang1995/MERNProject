@@ -56,7 +56,7 @@ const Daily = () => {
     <div>
       {user != null ? (
         <div>
-          <Layout />
+          {/* <Layout /> */}
           <Box m="1.5rem 2.5rem">
             <Header title="DAILY SALES" subtitle="Daily sales chart" />
             <Box height="75vh">

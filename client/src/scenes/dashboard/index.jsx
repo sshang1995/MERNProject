@@ -64,7 +64,7 @@ const Dashboard = () => {
     <div>
       {user != null ? (
         <div>
-          <Layout />
+          {/* <Layout /> */}
           <Box m="1.5rem 2.5rem">
             <FlexBetween>
               <Header

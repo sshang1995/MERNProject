@@ -54,7 +54,7 @@ const Customers = () => {
     <div>
       {user != null ? (
         <div>
-          <Layout />
+          {/* <Layout /> */}
           <Box m="1.5rem 2.5rem">
             <Header title="CUSTOMERS" subtitle="List of Customers" />
             <Box
