@@ -49,6 +49,9 @@ function Login() {
   };
 
   const onSubmit = (e) => {
+    toast.info(
+      "Please wait...there is not enough compute resource on free version of cloud"
+    );
     e.preventDefault();
 
     const userData = {
